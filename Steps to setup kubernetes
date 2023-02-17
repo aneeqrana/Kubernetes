@@ -1,0 +1,71 @@
+To install minicube 
+
+https://minikube.sigs.k8s.io/docs/start/
+
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+
+minikube start 
+or
+minikube start --driver=docker
+
+Alternatively, minikube can download the appropriate version of kubectl and you should be able to use it like this:
+
+minikube kubectl -- get po -A
+
+
+alias kubectl="minikube kubectl --"
+
+
+or to install kubectl 
+
+sudo snap install kubectl --classic
+
+you can now use it to access your shiny new cluster:
+kubectl get po -A
+
+minikube status
+
+kubectl get node
+
+minikube dashboard
+
+
+Alternatively, use kubectl to forward the port:
+
+kubectl port-forward service/hello-minikube 7080:8080
+
+
+Pause Kubernetes without impacting deployed applications:
+
+minikube pause
+
+
+Unpause a paused instance:
+
+minikube unpause
+
+
+Halt the cluster:
+
+minikube stop
+
+
+Change the default memory limit (requires a restart):
+
+minikube config set memory 9001
+
+Browse the catalog of easily installed Kubernetes services:
+
+minikube addons list
+
+Create a second cluster running an older Kubernetes release:
+
+minikube start -p aged --kubernetes-version=v1.16.1
+
+Delete all of the minikube clusters:
+
+minikube delete --all
+
